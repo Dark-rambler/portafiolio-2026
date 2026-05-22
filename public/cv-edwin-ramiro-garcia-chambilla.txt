@@ -1,0 +1,17 @@
+Edwin Ramiro Garcia Chambilla
+Desarrollador web
+
+Email: hello@example.com
+
+Resumen
+Desarrollador web enfocado en construir experiencias modernas, responsivas y de alto impacto visual.
+
+Stack principal
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+
+Nota
+Este archivo es un placeholder temporal para el CV descargable.
+Reemplazar por un PDF final cuando este listo.
