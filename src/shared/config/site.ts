@@ -14,7 +14,6 @@ export const siteConfig = {
     { href: "/#skills", label: "Skills" },
     { href: "/#experiencia", label: "Experiencia" },
     { href: "/#contacto", label: "Contacto" },
-    { href: "/#proyectos", label: "Proyectos" },
   ],
   contactEmail: "garciaramiro000@gmail.com",
   linkedinUrl: "https://www.linkedin.com/in/edwin-ramiro-garcia-chambilla/",
