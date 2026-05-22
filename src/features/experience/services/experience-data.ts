@@ -5,7 +5,7 @@ export const experienceData: ExperienceItem[] = [
     id: "courthouse-computers-system",
     role: "Desarrollador de software",
     company: "Courth house Computers system",
-    period: "Jun 2025 - Apr 2026",
+    period: "Jun 2025 - May 2026",
     summary:
       "Participe en proyectos de almacenamiento de datos sensibles para una corte. Estuve a cargo de implementar el frontend con Angular 19 y Angular CDK para mejorar la funcionalidad, y tambien apoye parte del backend con Python y Django.",
     stack: ["Angular 19", "Angular CDK", "Python", "Django"],
