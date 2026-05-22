@@ -4,13 +4,18 @@ export const siteConfig = {
   description:
     "Portafolio de Edwin Ramiro Garcia Chambilla, ingeniero de software y desarrollador web.",
   avatar: {
-    src: "/logo-software-engineer.svg",
+    src: "/edwin.webp",
     alt: "Logo de Edwin Ramiro Garcia Chambilla, ingeniero de software",
   },
-  cvFile: "/cv-edwin-ramiro-garcia-chambilla.txt",
+  cvFile: "/edwinCV12026.pdf",
   navigation: [
-    { href: "/", label: "Inicio" },
-    { href: "/projects", label: "Proyectos" },
+    { href: "/#inicio", label: "Inicio" },
+    { href: "/#servicios", label: "Servicios" },
+    { href: "/#skills", label: "Skills" },
+    { href: "/#experiencia", label: "Experiencia" },
+    { href: "/#contacto", label: "Contacto" },
+    { href: "/#proyectos", label: "Proyectos" },
   ],
-  contactEmail: "hello@example.com",
+  contactEmail: "garciaramiro000@gmail.com",
+  linkedinUrl: "https://www.linkedin.com/in/edwin-ramiro-garcia-chambilla/",
 } as const;

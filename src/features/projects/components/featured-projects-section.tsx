@@ -8,7 +8,7 @@ type FeaturedProjectsSectionProps = {
 
 export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionProps) {
   return (
-    <section className="space-y-8">
+    <section id="proyectos" className="space-y-8">
       <SectionTitle
         eyebrow="Trabajo destacado"
         title="Proyectos destacados"

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 type ThemeName = "cyber-blue" | "deep-neon" | "enterprise";
 
@@ -129,63 +129,46 @@ function isThemeName(value: string | null | undefined): value is ThemeName {
   );
 }
 
-function getInitialTheme(): ThemeName {
-  if (typeof window === "undefined") {
-    return DEFAULT_THEME;
+// useSyncExternalStore wiring — module-level so references are stable.
+
+function subscribeToTheme(callback: () => void): () => void {
+  function onStorage(event: StorageEvent) {
+    if (event.key !== THEME_KEY || !isThemeName(event.newValue)) return;
+    // Keep data-theme in sync for CSS selectors when another tab changes the theme.
+    document.documentElement.dataset.theme = event.newValue;
+    callback();
   }
+  window.addEventListener(THEME_EVENT, callback);
+  window.addEventListener("storage", onStorage);
+  return () => {
+    window.removeEventListener(THEME_EVENT, callback);
+    window.removeEventListener("storage", onStorage);
+  };
+}
 
-  const fromDataset = document.documentElement.dataset.theme;
+function getThemeSnapshot(): ThemeName {
+  const saved = window.localStorage.getItem(THEME_KEY);
+  return isThemeName(saved) ? saved : DEFAULT_THEME;
+}
 
-  if (isThemeName(fromDataset)) {
-    return fromDataset;
-  }
-
-  const fromStorage = window.localStorage.getItem(THEME_KEY);
-
-  if (isThemeName(fromStorage)) {
-    return fromStorage;
-  }
-
+function getThemeServerSnapshot(): ThemeName {
   return DEFAULT_THEME;
 }
 
 function useThemeSwitch() {
-  const [theme, setTheme] = useState<ThemeName>(getInitialTheme);
-
-  useEffect(() => {
-    function onThemeChange(event: Event) {
-      const customEvent = event as CustomEvent<{ theme?: ThemeName }>;
-      const nextTheme = customEvent.detail?.theme;
-
-      if (nextTheme && nextTheme !== theme) {
-        setTheme(nextTheme);
-      }
-    }
-
-    function onStorage(event: StorageEvent) {
-      if (event.key !== THEME_KEY || !isThemeName(event.newValue)) {
-        return;
-      }
-
-      setTheme(event.newValue);
-      document.documentElement.dataset.theme = event.newValue;
-    }
-
-    window.addEventListener(THEME_EVENT, onThemeChange as EventListener);
-    window.addEventListener("storage", onStorage);
-
-    return () => {
-      window.removeEventListener(THEME_EVENT, onThemeChange as EventListener);
-      window.removeEventListener("storage", onStorage);
-    };
-  }, [theme]);
+  // useSyncExternalStore uses getThemeServerSnapshot on the server (and during
+  // initial hydration) so both renders agree on DEFAULT_THEME, eliminating the
+  // hydration mismatch. After hydration it switches to getThemeSnapshot.
+  const theme = useSyncExternalStore(
+    subscribeToTheme,
+    getThemeSnapshot,
+    getThemeServerSnapshot,
+  );
 
   function selectTheme(nextTheme: ThemeName) {
-    if (nextTheme === theme) {
-      return;
-    }
-
-    setTheme(nextTheme);
+    if (nextTheme === theme) return;
+    // applyTheme updates localStorage + data-theme + dispatches THEME_EVENT,
+    // which triggers subscribeToTheme → getThemeSnapshot → re-render.
     applyTheme(nextTheme);
   }
 
@@ -239,16 +222,16 @@ export function ThemeSwitcherMobile() {
             key={option.value}
             type="button"
             onClick={() => selectTheme(option.value)}
-            className={`rounded-xl px-4 py-3 text-left text-sm font-semibold transition ${
+            className={`rounded-xl px-4 py-3 text-left text-sm font-semibold transition cursor-pointer ${
               isActive
                 ? "bg-[var(--panel-strong)] text-foreground"
                 : "bg-[var(--panel-soft)] text-muted hover:text-[var(--brand)]"
             }`}
             aria-pressed={isActive}
           >
-            <span className="flex items-center gap-2">
+            <span className="flex items-center gap-2 cursor-pointer">
               <span
-                className="h-2.5 w-2.5 rounded-full"
+                className="h-2.5 w-2.5 rounded-full "
                 style={{ background: option.swatch }}
               />
               {option.label}

@@ -15,6 +15,12 @@
   --panel-card: rgb(11 23 46 / 88%);
   --panel-border: rgb(111 123 255 / 24%);
   --on-brand: #041126;
+  --bg-glow-a: rgb(111 123 255 / 22%);
+  --bg-glow-b: rgb(0 209 255 / 18%);
+  --bg-glow-c: rgb(29 245 195 / 14%);
+  --bg-gradient-start: #060b16;
+  --bg-gradient-mid: #081126;
+  --bg-gradient-end: #0b1830;
 }
 
 html[data-theme="cyber-blue"] {
@@ -32,6 +38,12 @@ html[data-theme="cyber-blue"] {
   --panel-card: rgb(11 23 46 / 88%);
   --panel-border: rgb(111 123 255 / 24%);
   --on-brand: #041126;
+  --bg-glow-a: rgb(111 123 255 / 22%);
+  --bg-glow-b: rgb(0 209 255 / 18%);
+  --bg-glow-c: rgb(29 245 195 / 14%);
+  --bg-gradient-start: #060b16;
+  --bg-gradient-mid: #081126;
+  --bg-gradient-end: #0b1830;
 }
 
 html[data-theme="deep-neon"] {
@@ -49,6 +61,12 @@ html[data-theme="deep-neon"] {
   --panel-card: rgb(9 20 30 / 88%);
   --panel-border: rgb(38 213 255 / 24%);
   --on-brand: #032017;
+  --bg-glow-a: rgb(38 213 255 / 20%);
+  --bg-glow-b: rgb(0 255 178 / 16%);
+  --bg-glow-c: rgb(255 79 207 / 13%);
+  --bg-gradient-start: #040508;
+  --bg-gradient-mid: #07101a;
+  --bg-gradient-end: #0a151f;
 }
 
 html[data-theme="enterprise"] {
@@ -66,6 +84,12 @@ html[data-theme="enterprise"] {
   --panel-card: rgb(19 31 50 / 90%);
   --panel-border: rgb(126 143 177 / 26%);
   --on-brand: #081527;
+  --bg-glow-a: rgb(92 182 255 / 20%);
+  --bg-glow-b: rgb(127 226 208 / 12%);
+  --bg-glow-c: rgb(240 191 122 / 10%);
+  --bg-gradient-start: #0b1220;
+  --bg-gradient-mid: #121a2d;
+  --bg-gradient-end: #14213a;
 }
 
 @theme inline {
@@ -81,31 +105,44 @@ html[data-theme="enterprise"] {
   --font-mono: var(--font-jetbrains-mono);
 }
 
+html,
 body {
+  min-height: 100%;
+}
+
+html {
   background: var(--background);
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+  isolation: isolate;
+  background: transparent;
   color: var(--foreground);
-  background-image:
-    radial-gradient(circle at 8% 12%, rgb(111 123 255 / 20%), transparent 34%),
-    radial-gradient(circle at 88% 10%, rgb(0 209 255 / 16%), transparent 36%),
-    radial-gradient(circle at 72% 76%, rgb(29 245 195 / 12%), transparent 30%),
-    linear-gradient(145deg, #060b16 0%, #081126 42%, #0b1830 100%);
   font-family: var(--font-sora), sans-serif;
 }
 
-html[data-theme="deep-neon"] body {
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-color: var(--background);
   background-image:
-    radial-gradient(circle at 8% 12%, rgb(38 213 255 / 18%), transparent 34%),
-    radial-gradient(circle at 88% 10%, rgb(0 255 178 / 15%), transparent 36%),
-    radial-gradient(circle at 72% 76%, rgb(255 79 207 / 12%), transparent 30%),
-    linear-gradient(145deg, #040508 0%, #07101a 42%, #0a151f 100%);
-}
-
-html[data-theme="enterprise"] body {
-  background-image:
-    radial-gradient(circle at 8% 12%, rgb(92 182 255 / 18%), transparent 34%),
-    radial-gradient(circle at 88% 10%, rgb(127 226 208 / 11%), transparent 36%),
-    radial-gradient(circle at 72% 76%, rgb(240 191 122 / 9%), transparent 30%),
-    linear-gradient(145deg, #0b1220 0%, #121a2d 42%, #14213a 100%);
+    radial-gradient(circle at 10% 14%, var(--bg-glow-a), transparent 42%),
+    radial-gradient(circle at 86% 12%, var(--bg-glow-b), transparent 44%),
+    radial-gradient(circle at 70% 78%, var(--bg-glow-c), transparent 40%),
+    linear-gradient(
+      155deg,
+      var(--bg-gradient-start) 0%,
+      var(--bg-gradient-mid) 46%,
+      var(--bg-gradient-end) 100%
+    );
+  background-repeat: no-repeat;
+  background-size: 150% 140%, 140% 130%, 140% 130%, 100% 100%;
+  background-attachment: fixed;
 }
 
 .decor-orb {
@@ -122,6 +159,53 @@ html[data-theme="enterprise"] body {
   background: var(--panel-card);
   backdrop-filter: blur(12px);
   box-shadow: 0 18px 40px rgb(2 8 20 / 45%);
+}
+
+.tech-detail {
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-detail::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgb(0 209 255 / 6%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(0 209 255 / 6%) 1px, transparent 1px),
+    radial-gradient(circle at 82% 18%, rgb(111 123 255 / 12%), transparent 52%);
+  background-size: 30px 30px, 30px 30px, 100% 100%;
+  background-position: 0 0, 0 0, center;
+  mask-image: linear-gradient(150deg, rgb(0 0 0 / 4%) 6%, rgb(0 0 0 / 52%) 45%, rgb(0 0 0 / 12%) 100%);
+  opacity: 0.14;
+  transition: opacity 240ms ease;
+}
+
+.tech-detail:not(.shimmer-edge)::after {
+  content: "";
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  width: 26px;
+  height: 26px;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--brand), var(--brand)) right top / 10px 1px no-repeat,
+    linear-gradient(var(--brand), var(--brand)) right top / 1px 10px no-repeat,
+    linear-gradient(var(--brand-3), var(--brand-3)) left bottom / 8px 1px no-repeat,
+    linear-gradient(var(--brand-3), var(--brand-3)) left bottom / 1px 8px no-repeat;
+  opacity: 0.28;
+  transition: transform 260ms ease, opacity 260ms ease;
+}
+
+.tech-detail:hover::before {
+  opacity: 0.2;
+}
+
+.tech-detail:not(.shimmer-edge):hover::after {
+  opacity: 0.54;
+  transform: translateY(-1px);
 }
 
 .reveal-up {

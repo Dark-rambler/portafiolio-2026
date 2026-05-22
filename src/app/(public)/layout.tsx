@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { FloatingSectionRail } from "@/shared/components/navigation/floating-section-rail";
 import { SiteHeader } from "@/shared/components/navigation/site-header";
 
 type PublicLayoutProps = {
@@ -21,6 +22,7 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
         style={{ bottom: "7rem", left: "30%", animationDelay: "2.2s" }}
       />
       <SiteHeader />
+      <FloatingSectionRail />
       <main className="relative z-10 mx-auto w-full max-w-5xl px-6 py-10">
         {children}
       </main>

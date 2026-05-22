@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import type { Project } from "@/features/projects/types";
 import { formatDate } from "@/shared/lib/format-date";
 
@@ -8,9 +11,13 @@ type ProjectCardProps = {
 
 export function ProjectCard({ project, index }: ProjectCardProps) {
   return (
-    <article
-      className="glass-panel reveal-up space-y-4 rounded-2xl p-6"
-      style={{ animationDelay: `${140 + index * 90}ms` }}
+    <motion.article
+      className="glass-panel tech-detail space-y-4 rounded-2xl p-6"
+      initial={{ opacity: 0, y: 26, scale: 0.985, filter: "blur(4px)" }}
+      whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+      viewport={{ once: true, amount: 0.35 }}
+      transition={{ duration: 0.44, delay: index * 0.07, ease: "easeOut" }}
+      whileHover={{ y: -3, scale: 1.004 }}
     >
       <div className="flex items-center justify-between gap-3">
         <h3 className="text-lg font-extrabold text-foreground">{project.title}</h3>
@@ -31,6 +38,6 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           </li>
         ))}
       </ul>
-    </article>
+    </motion.article>
   );
 }

@@ -6,14 +6,17 @@ import { SectionTitle } from "@/shared/components/ui/section-title";
 
 type SkillIconName =
   | "react"
+  | "angular"
   | "nextjs"
   | "typescript"
   | "tailwind"
   | "node"
+  | "springboot"
   | "python"
   | "django"
   | "dotnet"
   | "postgres"
+  | "mongodb"
   | "docker"
   | "git"
   | "architecture";
@@ -57,6 +60,16 @@ const skillGroups: SkillGroup[] = [
         detail:
           "Me apoyo en su modelo de rendering para combinar SEO, velocidad y una estructura clara de paginas, rutas y componentes.",
         highlights: ["App Router", "Rendering hibrido", "SEO y performance"],
+      },
+      {
+        id: "angular",
+        name: "Angular",
+        icon: "angular",
+        summary:
+          "Desarrollo interfaces empresariales con estructura escalable y componentes bien organizados.",
+        detail:
+          "Lo aplico en proyectos que requieren consistencia de UI, modulos desacoplados y flujos robustos a largo plazo.",
+        highlights: ["Arquitectura modular", "Componentes reutilizables", "Flujos empresariales"],
       },
       {
         id: "typescript",
@@ -115,6 +128,16 @@ const skillGroups: SkillGroup[] = [
         highlights: ["Modelado de datos", "Endpoints", "Estructura escalable"],
       },
       {
+        id: "springboot",
+        name: "Spring Boot",
+        icon: "springboot",
+        summary:
+          "He participado en backends empresariales con Java y Spring Boot para servicios de negocio.",
+        detail:
+          "Lo utilizo cuando se necesita una base solida para APIs, integraciones y mantenimiento en entornos corporativos.",
+        highlights: ["Servicios REST", "Arquitectura empresarial", "Integraciones"],
+      },
+      {
         id: "dotnet",
         name: "C# / .NET",
         icon: "dotnet",
@@ -149,6 +172,16 @@ const skillGroups: SkillGroup[] = [
         detail:
           "Lo uso para evitar diferencias entre local y produccion, y para simplificar la puesta en marcha de servicios.",
         highlights: ["Contenerizacion", "Entornos repetibles", "Flujos de despliegue"],
+      },
+      {
+        id: "mongodb",
+        name: "MongoDB",
+        icon: "mongodb",
+        summary:
+          "Trabajo con modelos orientados a documentos para escenarios donde se necesita flexibilidad de datos.",
+        detail:
+          "Lo uso en productos con estructuras cambiantes y lectura/escritura agil, manteniendo claridad en colecciones y consultas.",
+        highlights: ["Modelo documental", "Consultas flexibles", "Escenarios dinamicos"],
       },
       {
         id: "git",
@@ -247,6 +280,15 @@ function SkillIcon({ icon }: { icon: SkillIconName }) {
     );
   }
 
+  if (icon === "angular") {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={iconClassName}>
+        <path d="M12 3.9 19.4 6.6l-1.1 9.2L12 20.1 5.7 15.8 4.6 6.6 12 3.9Z" stroke="currentColor" strokeWidth="1.4" />
+        <path d="M12 6.9 8.7 14.6h1.7l.7-1.8h2l.7 1.8h1.7L12 6.9Zm-.2 4.7.9-2.2.8 2.2h-1.7Z" fill="currentColor" />
+      </svg>
+    );
+  }
+
   if (icon === "nextjs") {
     return (
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={iconClassName}>
@@ -279,6 +321,17 @@ function SkillIcon({ icon }: { icon: SkillIconName }) {
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={iconClassName}>
         <path d="M12 3.8 18.8 7.7v8.6L12 20.2 5.2 16.3V7.7L12 3.8Z" stroke="currentColor" strokeWidth="1.5" />
         <path d="M9.6 9.6v4.8m4.8-4.8v4.8m-4.8-2.4h4.8" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  if (icon === "springboot") {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={iconClassName}>
+        <path d="M5.8 14.8c0 2.5 2.7 4.6 6.2 4.6 3.5 0 6.2-2.1 6.2-4.6 0-2.3-2.2-4.2-5.2-4.6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+        <path d="M12.1 7.3c-.1 1.5.7 2.4 1.9 3.2 1.6 1 2.7 2 2.8 3.8" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+        <path d="M9.3 8.1c1.4-.8 2.8-1.2 4.1-1.1" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+        <circle cx="8.1" cy="14.4" r="0.9" fill="currentColor" />
       </svg>
     );
   }
@@ -318,6 +371,16 @@ function SkillIcon({ icon }: { icon: SkillIconName }) {
         <path d="M12 4.8c-3.1 0-5 2.2-5 4.9v5c0 1.7 1.3 2.9 3.1 2.9h.9v1.7c0 .5.5.8 1 .6l2-.9c.4-.2.7-.6.7-1.1v-2.1c1.5-.3 2.3-1.4 2.3-2.8v-3.3c0-2.8-1.9-4.9-5-4.9Z" stroke="currentColor" strokeWidth="1.4" />
         <circle cx="10.3" cy="10" r="0.8" fill="currentColor" />
         <circle cx="13.9" cy="10" r="0.8" fill="currentColor" />
+      </svg>
+    );
+  }
+
+  if (icon === "mongodb") {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className={iconClassName}>
+        <path d="M12 4.4c2 2 3.2 4.8 3.2 7.7 0 3.4-1.3 6.1-3.2 7.5-1.9-1.4-3.2-4.1-3.2-7.5 0-2.9 1.2-5.7 3.2-7.7Z" stroke="currentColor" strokeWidth="1.4" />
+        <path d="M12 6.3v12.8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+        <path d="M12 11.7c.9-.8 1.8-1.4 2.6-1.7" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
       </svg>
     );
   }
@@ -407,7 +470,7 @@ export function SkillsSection() {
   }, [activeSkillId]);
 
   return (
-    <section className="space-y-8">
+    <section id="skills" className="space-y-8">
       <SectionTitle
         eyebrow="Stack y habilidades"
         title="Tecnologias con las que construyo"
@@ -418,7 +481,7 @@ export function SkillsSection() {
         {skillGroups.map((group, groupIndex) => (
           <article
             key={group.title}
-            className="glass-panel reveal-up space-y-4 rounded-2xl p-6"
+            className="glass-panel tech-detail reveal-up space-y-4 rounded-2xl p-6"
             style={{ animationDelay: `${150 + groupIndex * 90}ms` }}
           >
             <header className="space-y-2">
@@ -509,7 +572,7 @@ export function SkillsSection() {
               animate={{ y: 0, scale: 1, opacity: 1, rotateX: 0 }}
               exit={{ y: 34, scale: 0.98, opacity: 0, rotateX: -3 }}
               transition={cardSpring}
-              className="relative z-10 w-full max-w-2xl rounded-3xl border border-[var(--brand-2)]/35 bg-[var(--panel-card)] p-6 shadow-[0_28px_60px_rgb(1_7_19_/_0.72)] sm:p-7"
+              className="tech-detail relative z-10 w-full max-w-2xl rounded-3xl border border-[var(--brand-2)]/35 bg-[var(--panel-card)] p-6 shadow-[0_28px_60px_rgb(1_7_19_/_0.72)] sm:p-7"
               style={{ transformPerspective: 1200 }}
             >
               <motion.span
