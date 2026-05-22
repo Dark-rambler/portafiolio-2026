@@ -52,7 +52,7 @@ export function ServicesSection() {
       return true;
     }
 
-    return service.targets.includes(activeFilter);
+    return service.targets.some((t) => t === activeFilter);
   });
 
   return (
