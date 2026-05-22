@@ -96,9 +96,7 @@ export function ExperienceTimeline() {
 
                     <div className="flex flex-wrap items-start justify-between gap-3">
                       <div className="space-y-1">
-                        <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--brand-3)]">
-                          Hito {String(index + 1).padStart(2, "0")}
-                        </p>
+                      
                         <h3 className="text-lg font-black text-foreground">{entry.role}</h3>
                         <span className="text-sm font-semibold text-muted">
                           {entry.company}
