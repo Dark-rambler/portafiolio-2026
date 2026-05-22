@@ -16,6 +16,11 @@ const jetBrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: siteConfig.name,
   description: siteConfig.description,
+  icons: {
+    icon: "/logo-software-engineer.svg",
+    shortcut: "/logo-software-engineer.svg",
+    apple: "/logo-software-engineer.svg",
+  },
 };
 
 export default function RootLayout({
