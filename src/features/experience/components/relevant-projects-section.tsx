@@ -42,9 +42,6 @@ export function RelevantProjectsSection() {
 
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div className="space-y-1">
-                  <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[var(--brand-3)]">
-                    Empresa {String(index + 1).padStart(2, "0")}
-                  </p>
                   <h3 className="text-lg font-extrabold text-foreground">{company.company}</h3>
                   <p className="text-sm font-semibold text-[var(--brand-2)]">{company.role}</p>
                 </div>
